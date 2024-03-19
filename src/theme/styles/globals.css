@@ -1,22 +1,39 @@
 @import url(fontiran.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
-/* 
-body {
-	font-family: IRANSans !important;
-	font-weight: 300;
-	direction: rtl;
-	background-color: #E2E2E2;
-	margin: 0;
-} */
 
+body {
+  font-family: IRANSans !important;
+  font-weight: 300;
+  direction: rtl;
+  background-color: #161616;
+  margin: 0;
+}
+/* 
 :root {
   font-family: IRANSans !important;
   font-weight: 300;
   direction: rtl;
   background-color: #e2e2e2;
   margin: 0;
+} */
+
+div:has(> ul[role="menu"]) {
+  right: 16px !important;
+  left: 70% !important;
+  top: 64px !important;
+  text-align: center;
+}
+
+div:has(> ul[role="menu"]) ul {
+  display: flex;
+  flex-direction: column;
+}
+
+div:has(> ul[role="menu"]) ul li {
+  justify-content: center;
 }
 
 p,
+a,
 span,
 h1,
 h2,
@@ -24,7 +41,181 @@ h3,
 h4,
 h5,
 h6,
+div,
 input,
-textarea {
+button,
+textarea,
+ul > li {
   font-family: IRANSans !important;
+  color: #f2f2f2;
+}
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.container-footer {
+  position: relative;
+  direction: rtl;
+  width: 100%;
+  height: 100%;
+}
+
+.container-footer h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  white-space: 2px;
+  color: rgb(160, 204, 0);
+}
+
+.container-footer .paragraph {
+  text-align: justify;
+  width: 100%;
+  color: #fff;
+  font-size: medium;
+  font-weight: 400;
+  line-height: 1.7rem;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin-top: 2rem;
+}
+
+.list {
+  margin: 1rem;
+  padding: 0;
+}
+
+.list-items {
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 100;
+  list-style-type: none;
+  position: relative;
+  padding: 0.5rem 1rem;
+  transition: all 500ms ease;
+  cursor: pointer;
+}
+
+.list-items:hover {
+  color: #fff;
+}
+
+.lable-green::before {
+  content: "محبوب";
+  width: fit-content;
+  position: absolute;
+  padding: 0 2px;
+  border-radius: 5px;
+  left: -10px;
+  font-size: 10px;
+  font-weight: 100;
+  background-color: #4caf50;
+}
+
+.lable-red::before {
+  content: "جدید";
+  width: fit-content;
+  position: absolute;
+  padding: 0 2px;
+  border-radius: 5px;
+  left: -10px;
+  font-size: 10px;
+  font-weight: 100;
+  color: #fff;
+  background-color: red;
+}
+
+.hr::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0.5;
+  border-bottom: 1px solid #ddd;
+}
+
+.work-time-header {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  margin: 1rem 2rem 2rem;
+}
+
+.work-time {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  width: 240px;
+  line-height: 1.5rem;
+  margin: 0 2rem 2rem;
+}
+
+.call-us .title {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  margin: 1rem 2rem 1.5rem;
+}
+
+.call-us .email {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  margin: 0 2rem 0;
+}
+
+.call-us .email a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0 1rem;
+}
+
+.call-us .phone {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  margin: 1.5rem 2rem 1rem;
+}
+
+.links img {
+  border-radius: 1rem;
+  width: 90px;
+  height: 120px;
+  padding: 0.3rem;
+  margin-right: 6rem;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.copyright-footer {
+  color: #2ed573;
+  margin: 4px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.copyright {
+  color: #abb8c3;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 2rem auto 0 auto;
+  text-align: center;
+}
+
+.custom-divider-bottom {
+  padding: 1rem 0;
+  background-color: #393939;
 }

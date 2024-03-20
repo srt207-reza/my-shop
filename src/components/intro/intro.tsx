@@ -1,5 +1,4 @@
-import { NextPage } from "next";
-
+"use client"
 import { Box, Typography } from "@mui/material";
 import { Player } from "@lottiefiles/react-lottie-player";
 
@@ -8,7 +7,7 @@ interface Props {
   isSecond?: boolean;
 }
 
-const Intro: NextPage<Props> = ({ animation, isSecond }) => {
+const Intro: React.FC<Props> = ({ animation, isSecond }) => {
   const styleBox: object = {
     display: "flex",
     alignItems: "center",

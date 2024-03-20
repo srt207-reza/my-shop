@@ -1,12 +1,11 @@
-import { NextPage } from "next";
-
+"use client"
 import { Box, Button } from "@mui/material";
 
 interface Props {
   displayShow: object;
 }
 
-const NavItems: NextPage<Props> = ({ displayShow }) => {
+const NavItems: React.FC<Props> = ({ displayShow }) => {
   const sections:Array<string> = ["خانه", "توضیحات", "محصولات", "ارتباط با ما"];
 
   const boxStyle: object = { m: "0 auto", display: displayShow };

@@ -1,13 +1,14 @@
-import { useAppSelector } from "@/redux/hook";
-import { selectProducts } from "@/redux/store/products";
-import { NextPage } from "next";
-import ProductItem from "../product-item/product-item";
+"use client"
 import { Box, Link, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
+import { useAppSelector } from "@/redux/hook";
+import { selectProducts } from "@/redux/store/products";
+import ProductItem from "../product-item/product-item";
+
 interface Props {}
 
-const Products: NextPage<Props> = () => {
+const Products: React.FC<Props> = () => {
   const products = useAppSelector(selectProducts);
   const productItems = products?.map((item: any) => {
     return <ProductItem key={item.id} {...item} />;

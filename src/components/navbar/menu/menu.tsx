@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+"use client"
 import { Dispatch, ReactElement, SetStateAction } from "react";
 
 import { Box, IconButton, Menu, MenuItem } from "@mui/material";
@@ -11,7 +11,7 @@ interface Props {
   anchorNav: any | HTMLElement;
 }
 
-const NavMenu: NextPage<Props> = ({ close, displayClose, anchorNav, open }) => {
+const NavMenu: React.FC<Props> = ({ close, displayClose, anchorNav, open }) => {
   const sections:Array<string> = ["خانه", "توضیحات", "محصولات", "ارتباط با ما", "ورود"];
 
   const boxStyle:object = {

@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import { Box, Link, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 import { useAppSelector } from "@/redux/hook";
 import { selectProducts } from "@/redux/store/products";
-import ProductItem from "../product-item/product-item";
+import ProductItem from "../product-item";
 
 interface Props {}
 
@@ -15,7 +15,7 @@ const Products: React.FC<Props> = () => {
   });
 
   return (
-    <>
+    <div id="products">
       <Box sx={{ ...boxStyle, justifyContent: "space-between" }}>
         <Typography color="inherit" variant="h4" component="div">
           محصولات
@@ -29,7 +29,7 @@ const Products: React.FC<Props> = () => {
         </Typography>
       </Box>
       <Box sx={boxStyle}>{productItems}</Box>
-    </>
+    </div>
   );
 };
 

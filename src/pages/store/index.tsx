@@ -1,55 +1,46 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 
 import { Box, Container } from "@mui/material";
-import { useCookies } from "react-cookie";
 
-import ProductItem from "@/components/product-item/product-item";
-import Toast from "@/components/sweetalert";
+import ProductItem from "@/components/product-item";
 import { useAppSelector } from "@/redux/hook";
 import Header from "@/theme/layouts/header/header";
-import {
-  selectedProductsForStore,
-  selectedRepeatProductsForStore,
-} from "@/redux/store/selected";
+import { selectedProductsForStore } from "@/redux/store/selected";
 
 const Store: NextPage = () => {
-  const products = useAppSelector(selectedProductsForStore);
-  const productsRepeat = useAppSelector(selectedRepeatProductsForStore);
+  const products: Array<{}> = useAppSelector(selectedProductsForStore);
   const [priceCounter, setPriceCounter] = useState(0);
-  const [cookie] = useCookies();
-  const router = useRouter();
+  const [totalCount, setTotalCount] = useState(0);
 
   const productItems = products?.map((item: any) => {
-    return <ProductItem counter={true} key={item.id} {...item} />;
+    return <ProductItem counter={true} key={item?.id} {...item} />;
   });
 
-  const counterProducts = () => {
-    products?.map((item: any) => {
-      setPriceCounter((data) => data + item.price);
+  const counterProducts = async () => {
+    let counter = 0;
+    let price = 0;
+
+    await products?.forEach((item: any) => {
+      price += item?.price * item?.repeat;
     });
+
+    await products?.forEach((item: any) => {
+      counter += item?.repeat;
+    });
+
+    setTotalCount(counter);
+    setPriceCounter(price);
   };
 
   useEffect(() => {
-    if (!cookie?.userToken) {
-      router.push("/");
-    }
-
     counterProducts();
-
-    if (!productsRepeat?.[0]) {
-      Toast.fire({
-        icon: "error",
-        title: "کالایی یافت نشد !",
-      });
-    }
-  }, []);
+  }, [products]);
 
   return (
     <>
       <Header />
-      {productsRepeat?.[0] ? (
+      {products?.[0] ? (
         <Container>
           <Box sx={boxStyle}>
             <h3>
@@ -58,10 +49,10 @@ const Store: NextPage = () => {
             </h3>
             <h3>
               <span style={spanStyle}>تعداد تمامی کالا های انتخواب شده :</span>{" "}
-              {productsRepeat?.length}
+              {totalCount}
             </h3>
             <h3>
-              <span style={spanStyle}>فاکتور نهایی :</span> {priceCounter} $
+              <span style={spanStyle}>فاکتور نهایی :</span> {priceCounter.toFixed(2)} $
             </h3>
           </Box>
           <Box sx={productStyle}>{productItems}</Box>

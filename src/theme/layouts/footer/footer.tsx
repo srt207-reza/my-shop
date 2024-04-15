@@ -3,7 +3,7 @@ import { NextPage } from "next";
 
 const Footer: NextPage = () => {
   return (
-    <div className="container-footer">
+    <div className="container-footer" id="about">
       <h2>ضمانت تاپ دو برای کلیه محصولات</h2>
 
       <p className="paragraph">

@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import { Dispatch, ReactElement, SetStateAction } from "react";
 
 import { Box, IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import Link from "next/link";
 
 interface Props {
   close: Dispatch<SetStateAction<any | HTMLElement>>;
@@ -12,16 +13,24 @@ interface Props {
 }
 
 const NavMenu: React.FC<Props> = ({ close, displayClose, anchorNav, open }) => {
-  const sections:Array<string> = ["خانه", "توضیحات", "محصولات", "ارتباط با ما", "ورود"];
+  const sections: Array<object> = [
+    { name: "خانه", link: "/" },
+    { name: "توضیحات", link: "/#description" },
+    { name: "محصولات", link: "/#products" },
+    { name: "ارتباط با ما", link: "#about" },
+    { name: "ورود", link: "/login" },
+  ];
 
-  const boxStyle:object = {
+  const boxStyle: object = {
     display: displayClose,
     flexGrow: 1,
     justifyContent: "start",
   };
 
-  const menuItems:Array<ReactElement> = sections.map((item, index) => (
-    <MenuItem key={index}>{item}</MenuItem>
+  const menuItems: Array<ReactElement> = sections.map((item: any, index) => (
+    <MenuItem key={index}>
+      <Link href={item.link}>{item.name}</Link>
+    </MenuItem>
   ));
 
   return (

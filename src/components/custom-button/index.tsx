@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { Button } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useAppSelector } from "@/redux/hook";
 import { selectedProductsForStore } from "@/redux/store/selected";
@@ -16,7 +18,7 @@ interface Props {
 const CustomButton: React.FC<Props> = ({ style }) => {
   const router = useRouter();
   const products = useAppSelector(selectedProductsForStore);
-  const [cookie] = useCookies();
+  const [cookie,,removeCookie] = useCookies();
   const [session, setSession] = useState("");
 
   const goLoginPage = () => {
@@ -27,9 +29,15 @@ const CustomButton: React.FC<Props> = ({ style }) => {
     router.push("/store");
   };
 
+  const logoutHandler = () => {
+    removeCookie("userToken")
+
+    router.push("/");
+  };
+
   useEffect(() => {
     setSession(cookie?.userToken);
-  }, []);
+  }, [cookie]);
 
   return (
     <>
@@ -53,6 +61,18 @@ const CustomButton: React.FC<Props> = ({ style }) => {
           </>
         )}
       </Button>
+      {session && (
+        <Button
+          color="inherit"
+          onClick={logoutHandler}
+          sx={{ display: style }}
+        >
+          <>
+            <LogoutIcon sx={{ mx: 1 }} />
+            خروج
+          </>
+        </Button>
+      )}
     </>
   );
 };

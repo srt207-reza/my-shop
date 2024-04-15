@@ -1,15 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from ".";
 
 interface SelectedState {
-  selected?: Array<object>;
+  selected?: any;
   selectedRepeat?: Array<object>;
 }
 
 const initialState: SelectedState = {
   selected: [],
-  selectedRepeat: [],
 };
 
 export const selectedSlice = createSlice({
@@ -17,26 +16,42 @@ export const selectedSlice = createSlice({
   initialState,
   reducers: {
     updateSelectedProduct: (state, action: PayloadAction<object>) => {
-      state.selected?.push(action.payload);
-      state.selectedRepeat?.push(action.payload);
+      state.selected = [
+        ...state?.selected,
+        {
+          ...action?.payload,
+          repeat: 1,
+        },
+      ];
     },
     deleteSelectedProduct: (state, action: PayloadAction<number>) => {
       state.selected = state.selected?.filter(
         (item: any) => item.id !== action.payload
       );
-      state.selectedRepeat = state.selectedRepeat?.filter(
-        (item: any) => item.id !== action.payload
-      );
     },
-    updateSelectedRepeatProduct: (state, action: PayloadAction<object>) => {
-      state.selectedRepeat?.push(action.payload);
-    },
-    deleteSelectedRepeatProduct: (state, action: PayloadAction<number>) => {
-      state.selectedRepeat = state.selectedRepeat?.filter(
-        (item: any) => item.id !== action.payload
+    updateRepeatProduct: (state, action: PayloadAction<number>) => {
+      const indexElem = state.selected?.findIndex(
+        (item: any) => item.id === action.payload
       );
 
-      state.selected = state.selectedRepeat
+      state.selected = state.selected.map((item: any, index: number) => {
+        if (index === indexElem) item.repeat++;
+
+        return item;
+      });
+    },
+    deleteRepeatProduct: (state, action: PayloadAction<number>) => {
+      const indexElem = state.selected?.findIndex(
+        (item: any) => item.id === action.payload
+      );
+
+      state.selected = state.selected.filter((item: any, index: number) => {
+        if (index === indexElem) item.repeat--;
+
+        if (item.repeat === 0) return false;
+
+        return true;
+      });
     },
   },
 });
@@ -44,14 +59,11 @@ export const selectedSlice = createSlice({
 export const {
   updateSelectedProduct,
   deleteSelectedProduct,
-  updateSelectedRepeatProduct,
-  deleteSelectedRepeatProduct,
+  updateRepeatProduct,
+  deleteRepeatProduct,
 } = selectedSlice.actions;
 
 export const selectedProductsForStore = (state: RootState) =>
   state.selectedReducer.selected;
-
-export const selectedRepeatProductsForStore = (state: RootState) =>
-  state.selectedReducer.selectedRepeat;
 
 export default selectedSlice.reducer;

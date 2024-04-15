@@ -1,22 +1,20 @@
 import { NextPage } from "next";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 import { Box } from "@mui/material";
 import { useCookies } from "react-cookie";
 
-import Input from "@/components/input/input";
+import Input from "@/components/input";
 import callApi from "@/auth/service";
 import Toast from "@/components/sweetalert";
 
 const Login: NextPage = () => {
   const [, setCookie] = useCookies(["userToken"]);
-  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const successLogin = async (token: string) => {
-    router.push("/");
+    location.replace("/")
     setCookie("userToken", token, {
       maxAge: 3600 * 24,
       domain: "localhost",
@@ -54,12 +52,13 @@ const Login: NextPage = () => {
 
   return (
     <Box className="login-box" sx={loginBoxStyle}>
-      <p>Login</p>
+      <p>Top Dev</p>
       <form>
-        <Input name="Username" value={username} change={setUsername} />
+        <Input name="Username" label="نام کاربری" value={username} change={setUsername} />
         <Input
           name="Password"
           value={password}
+          label="پسورد"
           change={setPassword}
           type="password"
         />
@@ -68,7 +67,7 @@ const Login: NextPage = () => {
           <span></span>
           <span></span>
           <span></span>
-          Submit
+          ورود
         </a>
       </form>
     </Box>

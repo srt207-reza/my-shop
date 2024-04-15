@@ -1,17 +1,14 @@
 import { NextPage } from "next";
 import { useState, MouseEvent } from "react";
 
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
 import DiamondIcon from "@mui/icons-material/Diamond";
 
-import NavMenu from "@/components/navbar/menu/menu";
-import NavItems from "@/components/navbar/items/item";
-import CustomButton from "@/components/custom-button/custom-button";
-import { useCookies } from "react-cookie";
+import NavMenu from "@/components/navbar/menu";
+import NavItems from "@/components/navbar/items";
+import CustomButton from "@/components/custom-button";
 
-interface Props {}
-
-const Header: NextPage<Props> = ({}) => {
+const Header: NextPage = () => {
   const [anchorNav, setAnchorNav] = useState<null | HTMLElement>(null);
 
   const openMenu = (event: MouseEvent<HTMLElement>) => {

@@ -16,7 +16,8 @@ import {
   selectedProductsForStore,
   updateSelectedProduct,
 } from "@/redux/store/selected";
-import Counter from "../counter/counter";
+import Counter from "../counter";
+import { clickProduct } from "@/redux/store/products";
 
 interface Props {
   key?: number;
@@ -49,6 +50,10 @@ const ProductItem: NextPage<Props> = (props) => {
     return res || false;
   };
 
+  const seeProductHandler = () => {
+    dispatch(clickProduct());
+  };
+
   return (
     <Card sx={cardStyle}>
       <CardMedia
@@ -73,12 +78,14 @@ const ProductItem: NextPage<Props> = (props) => {
           {props.price} $
         </Typography>
         {props.counter ? (
-          <>
-            <Counter {...props} />
-          </>
+          <Counter {...props} />
         ) : (
           <Button sx={{ width: 1 }} color="warning" variant="contained">
-            <Link href="/products/[id]" as={`/products/${props.id}`}>
+            <Link
+              href="/products/[id]"
+              onClick={seeProductHandler}
+              as={`/products/${props.id}`}
+            >
               مشاهده
             </Link>
           </Button>

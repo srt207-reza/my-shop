@@ -6,10 +6,11 @@ interface Props {
   name: string;
   type?: string;
   value: string;
+  label: string;
   change: Dispatch<SetStateAction<string>>;
 }
 
-const Input: React.FC<Props> = ({ name, value, type, change }) => {
+const Input: React.FC<Props> = ({ name, value, type, label, change }) => {
   return (
     <div className="user-box">
       <input
@@ -21,7 +22,7 @@ const Input: React.FC<Props> = ({ name, value, type, change }) => {
         value={value}
         type={type || "text"}
       />
-      <label>{name}</label>
+      <label>{label}</label>
     </div>
   );
 };

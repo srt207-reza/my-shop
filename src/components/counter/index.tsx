@@ -1,12 +1,11 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { useAppDispatch } from "@/redux/hook";
+import {
+  deleteRepeatProduct,
+  updateRepeatProduct,
+} from "@/redux/store/selected";
 import { Button } from "@mui/material";
 
-import {
-  deleteSelectedRepeatProduct,
-  selectedRepeatProductsForStore,
-  updateSelectedRepeatProduct,
-} from "@/redux/store/selected";
 import { useState } from "react";
 
 const Counter: React.FC = (props: any) => {
@@ -14,13 +13,13 @@ const Counter: React.FC = (props: any) => {
   const [counter, setCounter] = useState(1);
 
   const addData = () => {
-    setCounter((count) => count + 1);
-    dispatch(updateSelectedRepeatProduct(props));
+    dispatch(updateRepeatProduct(props.id));
+    setCounter((perv) => ++perv);
   };
 
   const removeData = () => {
-    setCounter(1);
-    dispatch(deleteSelectedRepeatProduct(props.id));
+    dispatch(deleteRepeatProduct(props.id));
+    setCounter((perv) => --perv);
   };
 
   return (

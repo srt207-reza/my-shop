@@ -1,5 +1,9 @@
 @import url(fontiran.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: IRANSans !important;
   font-weight: 300;
@@ -7,14 +11,10 @@ body {
   background-color: #161616;
   margin: 0;
 }
-/* 
-:root {
-  font-family: IRANSans !important;
-  font-weight: 300;
-  direction: rtl;
-  background-color: #e2e2e2;
-  margin: 0;
-} */
+
+#__next {
+  overflow: hidden !important;
+}
 
 div:has(> ul[role="menu"]) {
   right: 16px !important;
@@ -232,6 +232,7 @@ p {
 
 .login-box {
   position: absolute;
+  direction: ltr;
   top: 50%;
   left: 50%;
   margin: 20px auto;
@@ -257,7 +258,6 @@ p {
 }
 
 .login-box .user-box input {
-  direction: ltr;
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
@@ -283,7 +283,7 @@ p {
 .login-box .user-box input:focus ~ label,
 .login-box .user-box input:valid ~ label {
   top: -20px;
-  left: 245px;
+  left: 258px;
   color: #fff;
   font-size: 12px;
 }

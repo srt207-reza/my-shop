@@ -5,6 +5,7 @@ import { useAppDispatch } from "@/redux/hook";
 import { updateProduct } from "@/redux/store/products";
 import callApi from "@/auth/service";
 import Dashboard from "./dashboard";
+import type { ReactElement } from "react";
 
 export default function Home(props: any) {
   const dispatch = useAppDispatch();
@@ -17,10 +18,21 @@ export default function Home(props: any) {
   return <Dashboard />;
 }
 
+Home.getLayout = function getLayout(page: ReactElement) {
+  console.log(page);
+  return { page };
+};
+
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await callApi().get("products");
+  try {
+    const res = await callApi().get("products");
+    
+    return {
+      props: { ...res.data },
+    };
+  } catch {}
 
   return {
-    props: { ...res.data },
+    notFound: true,
   };
 };

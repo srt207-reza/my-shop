@@ -1,10 +1,16 @@
+import { Player } from "@lottiefiles/react-lottie-player";
 import { NextPage } from "next";
+import animation from "@/../public/assets/images/403.json";
 
 const Custom404: NextPage = () => {
   return (
-    <h2 style={{ textAlign: "center", margin: "10% 0" }}>
-      صفحه مورد نظر یافت نشد !
-    </h2>
+    <Player
+      src={animation}
+      style={{ width: "50rem", textAlign: "center", marginTop: "5rem" }}
+      className="player"
+      loop
+      autoplay
+    />
   );
 };
 

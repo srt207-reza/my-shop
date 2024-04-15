@@ -19,8 +19,8 @@ export const productSlice = createSlice({
     updateProduct: (state, action: PayloadAction<Array<object>>) => {
       state.products = action.payload;
     },
-    clickProduct: (state) => {
-      state.toggleHandler = !state.toggleHandler;
+    clickProduct: (state, action?: any) => {
+      state.toggleHandler = action?.payload;
     },
   },
 });

@@ -51,7 +51,8 @@ const ProductItem: NextPage<Props> = (props) => {
   };
 
   const seeProductHandler = () => {
-    dispatch(clickProduct());
+    // @ts-ignore
+    dispatch(clickProduct(true));
   };
 
   return (

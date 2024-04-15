@@ -20,7 +20,8 @@ const SingleProduct: NextPage<Props> = (props) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(clickProduct());
+    // @ts-ignore
+    dispatch(clickProduct(false));
   }, []);
 
   return (

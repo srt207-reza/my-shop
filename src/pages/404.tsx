@@ -1,6 +1,6 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import { NextPage } from "next";
-import animation from "@/../public/assets/images/403.json";
+import animation from "@/../public/assets/images/404.json";
 
 const Custom404: NextPage = () => {
   return (
